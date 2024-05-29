@@ -1,0 +1,12 @@
+C:\Users\Fabio\source\repos\RisepayProj\Risepay.Domain\bin\Debug\net6.0\Risepay.Domain.deps.json
+C:\Users\Fabio\source\repos\RisepayProj\Risepay.Domain\bin\Debug\net6.0\Risepay.Domain.dll
+C:\Users\Fabio\source\repos\RisepayProj\Risepay.Domain\bin\Debug\net6.0\Risepay.Domain.pdb
+C:\Users\Fabio\source\repos\RisepayProj\Risepay.Domain\obj\Debug\net6.0\Risepay.Domain.csproj.AssemblyReference.cache
+C:\Users\Fabio\source\repos\RisepayProj\Risepay.Domain\obj\Debug\net6.0\Risepay.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Fabio\source\repos\RisepayProj\Risepay.Domain\obj\Debug\net6.0\Risepay.Domain.AssemblyInfoInputs.cache
+C:\Users\Fabio\source\repos\RisepayProj\Risepay.Domain\obj\Debug\net6.0\Risepay.Domain.AssemblyInfo.cs
+C:\Users\Fabio\source\repos\RisepayProj\Risepay.Domain\obj\Debug\net6.0\Risepay.Domain.csproj.CoreCompileInputs.cache
+C:\Users\Fabio\source\repos\RisepayProj\Risepay.Domain\obj\Debug\net6.0\Risepay.Domain.dll
+C:\Users\Fabio\source\repos\RisepayProj\Risepay.Domain\obj\Debug\net6.0\refint\Risepay.Domain.dll
+C:\Users\Fabio\source\repos\RisepayProj\Risepay.Domain\obj\Debug\net6.0\Risepay.Domain.pdb
+C:\Users\Fabio\source\repos\RisepayProj\Risepay.Domain\obj\Debug\net6.0\ref\Risepay.Domain.dll

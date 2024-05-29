@@ -1,10 +1,85 @@
 ﻿@page
 @model IndexModel
+
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "Colaboradores";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<h2>Colaboradores</h2>
+
+<div class="row mb-3">
+    <div class="col-md-6">
+        <form method="get">
+            <div class="form-group d-flex">
+                <input type="text" name="searchString" value="@Model.SearchString" class="form-control" />
+                <button type="submit" class="btn btn-primary ml-2">Buscar</button>
+                <button type="button" class="btn btn-success ml-2" id="btnAdicionarNovo" data-toggle="modal" data-target="#modalAdicionar">Adicionar Novo</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>Telefone</th>
+            <th>Cargo</th>
+            <th>Ações</th> <!-- Nova coluna para botão de editar -->
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Colaboradores != null)
+        {
+            foreach (var colaborador in Model.Colaboradores)
+            {
+                <tr>
+                    <td>@colaborador.Nome</td>
+                    <td>@colaborador.Email</td>
+                    <td>@colaborador.Telefone</td>
+                    <td>@colaborador.Cargo?.Nome</td>
+                    <td>
+                        <!-- Coluna para o botão de editar -->
+                        <button type="button" class="btn btn-primary btn-editar" data-id="@colaborador.Id">Editar</button>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+<div class="modal fade" id="modalAdicionar" tabindex="-1" role="dialog" aria-labelledby="modalAdicionarLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalAdicionarLabel">Adicionar Novo Colaborador</h5>
+            </div>
+            <div class="modal-body">
+                <form id="formAdicionarColaborador">
+                    <input type="hidden" id="colaboradorId" name="colaboradorId"> <!-- Campo oculto para armazenar o ID do colaborador -->
+                    <div class="form-group">
+                        <label for="nome">Nome:</label>
+                        <input type="text" class="form-control" id="nome" name="nome">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" class="form-control" id="email" name="email">
+                    </div>
+                    <div class="form-group">
+                        <label for="telefone">Telefone:</label>
+                        <input type="tel" class="form-control" id="telefone" name="telefone">
+                    </div>
+                    <div class="form-group">
+                        <label for="cargo">Cargo:</label>
+                        <select class="form-control" id="cargo" name="cargo"></select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" id="btnCriarColaborador">Criar</button>
+            </div>
+        </div>
+    </div>
 </div>

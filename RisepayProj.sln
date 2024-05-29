@@ -3,20 +3,41 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Risepay.Web", "Risepay.Web\Risepay.Web.csproj", "{7B085907-A0BB-4B75-B699-B418A70DDF3F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Risepay.Web", "Risepay.Web\Risepay.Web.csproj", "{7B085907-A0BB-4B75-B699-B418A70DDF3F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Risepay.API", "Risepay.API\Risepay.API.csproj", "{2544BFA9-EA32-40AB-A9BB-92EC2E7D7D14}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Risepay.Domain", "Risepay.Domain\Risepay.Domain.csproj", "{446A3470-7924-492C-A719-0B696B636A65}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Risepay.Infra", "Risepay.Infra\Risepay.Infra.csproj", "{ACDDCEB0-10EC-4339-8319-116E1231FDBE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
-	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{7B085907-A0BB-4B75-B699-B418A70DDF3F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7B085907-A0BB-4B75-B699-B418A70DDF3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7B085907-A0BB-4B75-B699-B418A70DDF3F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7B085907-A0BB-4B75-B699-B418A70DDF3F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2544BFA9-EA32-40AB-A9BB-92EC2E7D7D14}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2544BFA9-EA32-40AB-A9BB-92EC2E7D7D14}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2544BFA9-EA32-40AB-A9BB-92EC2E7D7D14}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2544BFA9-EA32-40AB-A9BB-92EC2E7D7D14}.Release|Any CPU.Build.0 = Release|Any CPU
+		{446A3470-7924-492C-A719-0B696B636A65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{446A3470-7924-492C-A719-0B696B636A65}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{446A3470-7924-492C-A719-0B696B636A65}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{446A3470-7924-492C-A719-0B696B636A65}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ACDDCEB0-10EC-4339-8319-116E1231FDBE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ACDDCEB0-10EC-4339-8319-116E1231FDBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ACDDCEB0-10EC-4339-8319-116E1231FDBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ACDDCEB0-10EC-4339-8319-116E1231FDBE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B9CFF98C-FB74-427E-81C1-07848B6A816D}
 	EndGlobalSection
 EndGlobal
