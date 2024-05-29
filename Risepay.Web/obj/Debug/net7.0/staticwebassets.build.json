@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "rdyWCyPYb/9LC2IhPObBBkPo9H+X9jDMAnoVKPTE2pY=",
+  "Hash": "KpyulBuWQy33s+cA6C3tl4q/zhcrWDzfxO4Myzzacb4=",
   "Source": "Risepay.Web",
   "BasePath": "_content/Risepay.Web",
   "Mode": "Default",
@@ -83,6 +83,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "C:\\Users\\Fabio\\source\\repos\\RisepayProj\\Risepay.Web\\wwwroot\\img\\background.jpg",
+      "SourceId": "Risepay.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Fabio\\source\\repos\\RisepayProj\\Risepay.Web\\wwwroot\\",
+      "BasePath": "_content/Risepay.Web",
+      "RelativePath": "img/background.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\img\\background.jpg"
     },
     {
       "Identity": "C:\\Users\\Fabio\\source\\repos\\RisepayProj\\Risepay.Web\\wwwroot\\js\\site.js",

@@ -1,12 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Risepay.Domain.Entities;
-using Risepay.Infra.Context;
 using Risepay.Infra.Interfaces;
 using Risepay.Infra.Requests;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+
 
 namespace Risepay.Api.Controllers
 {
@@ -56,6 +52,20 @@ namespace Risepay.Api.Controllers
             catch (Exception ex)
             {
                 return BadRequest(new { mensagem = "Falha na requisição de update", erro = ex.Message });
+            }
+        }
+
+        [HttpGet("buscar")]
+        public async Task<IActionResult> SearchByName(string nome)
+        {
+            try
+            {
+                var response = await _service.SearchByName(nome);
+                return new JsonResult(response);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { mensagem = "Falha na requisição de busca", erro = ex.Message });
             }
         }
 

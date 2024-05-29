@@ -44,5 +44,11 @@ namespace Risepay.API.Services
         {
             return await _repository.GetById(id);
         }
+
+        public async Task<IEnumerable<Colaborador>> SearchByName(string nome)
+        {
+            var colaboradores = await _repository.SearchByName(nome);
+            return colaboradores;
+        }
     }
 }

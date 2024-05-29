@@ -69,6 +69,13 @@ namespace Risepay.Infra.Repositories
             }
         }
 
+        public async Task<IEnumerable<Colaborador>> SearchByName(string nome)
+        {
+            return await _context.Colaboradores
+                .Include(c => c.Cargo)
+                .Where(c => c.Nome.Contains(nome))
+                .ToListAsync();
+        }
 
     }
 }

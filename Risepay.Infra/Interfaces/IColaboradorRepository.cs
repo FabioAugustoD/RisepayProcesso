@@ -13,5 +13,6 @@ namespace Risepay.Infra.Interfaces
         Task<Colaborador> GetById(int id);
         Task<Colaborador> Create(Colaborador colaborador);
         Task Edit(Colaborador colaborador, int id);
+        Task<IEnumerable<Colaborador>>SearchByName(string nome);
     }
 }

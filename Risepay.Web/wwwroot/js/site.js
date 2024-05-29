@@ -1,20 +1,23 @@
 ﻿$(document).ready(function () {
     $('#btnAdicionarNovo').click(function () {
         $('#modalAdicionar').modal('show');
-        carregarCargos(); // Carregar lista de cargos quando o modal é aberto
-        configurarBotaoCriar(); // Configurar botão para criação
+        limparCamposModal();
+        carregarCargos();
+        configurarBotaoCriar();
     });
 
-    function configurarBotaoCriar() {
+    function configurarBotaoCriar() {        
         $('#btnCriarColaborador').off('click').on('click', function () {
             var nome = $('#nome').val();
             var email = $('#email').val();
             var telefone = $('#telefone').val();
-            var cargoId = $('#cargo').val(); // Capturar o ID do cargo selecionado
+            var cargoId = $('#cargo').val();
 
-            console.log('ID do Cargo Selecionado:', cargoId);
-
-            // Enviar os dados do colaborador ao servidor
+            if (!validarEmail(email)) {
+                mostrarErroEmail('Email inválido');
+                return;
+            }   
+            
             $.ajax({
                 url: 'https://localhost:7107/api/colaboradores',
                 type: 'POST',
@@ -23,22 +26,80 @@
                     nome: nome,
                     email: email,
                     telefone: telefone,
-                    idcargo: cargoId // Certifique-se de que o nome da propriedade está correto
+                    idcargo: cargoId
                 }),
-                success: function (data) {
-                    // Lidar com o sucesso                
+                success: function (data) {                                    
                     $('#modalAdicionar').modal('hide');
-                    location.reload(); // Recarregar a página
+                    location.reload();
                 },
-                error: function (error) {
-                    // Lidar com o erro
+                error: function (error) {                    
                 }
             });
         });
     }
 
-    // Função para carregar lista de cargos na combobox
-    function carregarCargos() {
+    function configurarBotaoAtualizar(colaboradorId) {
+        $('#btnCriarColaborador').off('click').on('click', function () {
+            var nome = $('#nome').val();
+            var email = $('#email').val();
+            var telefone = $('#telefone').val();
+            var cargoId = $('#cargo').val();
+
+            if (!validarEmail(email)) {
+                mostrarErroEmail('Email inválido');
+                return;
+            }
+
+            var dados = {
+                nome: nome,
+                email: email,
+                telefone: telefone,
+                idcargo: cargoId
+            };
+
+            $.ajax({
+                url: 'https://localhost:7107/api/colaboradores/' + colaboradorId,
+                type: 'PUT',
+                contentType: 'application/json',
+                data: JSON.stringify(dados),
+                success: function (data) {                    
+                    $('#modalAdicionar').modal('hide');
+                    location.reload();
+                },
+                error: function (error) {                    
+                    console.error('Erro ao atualizar colaborador:', error);
+                }
+            });
+        });
+    }
+
+    function limparCamposModal() {
+        $('#nome').val('');
+        $('#email').val('');
+        $('#telefone').val('');
+        $('#cargo').val('');
+        ocultarErroEmail();
+    }
+
+
+    function validarEmail(email) {
+        var re = /^[\w\.-]+@[a-zA-Z\d\.-]+\.[a-zA-Z]{2,}$/;
+        return re.test(email);
+    }
+
+    function mostrarErroEmail(mensagem) {
+        $('#erroEmail').text(mensagem).show();
+    }
+
+    function ocultarErroEmail() {
+        $('#erroEmail').hide();
+    }
+
+    $('#email').on('input', function () {
+        ocultarErroEmail();
+    });
+   
+    function carregarCargos(selectedCargoId) {
         $.ajax({
             url: 'https://localhost:7107/api/cargo',
             type: 'GET',
@@ -48,88 +109,85 @@
                     options += '<option value="' + item.id + '">' + item.nome + '</option>';
                 });
                 $('#cargo').html(options);
+
+                if (selectedCargoId) {
+                    $('#cargo').val(selectedCargoId);
+                }
             },
             error: function (error) {
-                // Lidar com o erro
+                
             }
         });
     }
 
     $(document).on('click', '.btn-editar', function () {
         var colaboradorId = $(this).data('id');
-        $('#modalAdicionar').modal('show'); // Abre o modal de criação
-
-        // Altere o texto do botão e o título do modal
+        $('#modalAdicionar').modal('show');        
         $('#btnCriarColaborador').text('Atualizar');
         $('#modalAdicionarLabel').text('Editar Colaborador');
-
-        // Limpe os campos do formulário para evitar dados antigos
+        
         $('#nome').val('');
         $('#email').val('');
         $('#telefone').val('');
         $('#cargo').val('');
-        $('#colaboradorId').val(colaboradorId); // Armazena o ID do colaborador
-
-        // Carregue os detalhes do colaborador no formulário de criação
+        $('#colaboradorId').val(colaboradorId); 
+        
         carregarDetalhesDoColaborador(colaboradorId);
-
-        // Configurar botão para atualizar
+        
         configurarBotaoAtualizar(colaboradorId);
     });
 
-    function configurarBotaoAtualizar(colaboradorId) {
-        $('#btnCriarColaborador').off('click').on('click', function () {
-            // Capturar os valores dos campos do formulário
-            var nome = $('#nome').val();
-            var email = $('#email').val();
-            var telefone = $('#telefone').val();
-            var cargoId = $('#cargo').val(); // Capturar o ID do cargo selecionado
-
-            // Criar o objeto de dados para enviar ao servidor
-            var dados = {
-                nome: nome,
-                email: email,
-                telefone: telefone,
-                idcargo: cargoId
-            };
-
-            // Enviar uma solicitação AJAX PUT para atualizar os dados do colaborador
-            $.ajax({
-                url: 'https://localhost:7107/api/colaboradores/' + colaboradorId,
-                type: 'PUT',
-                contentType: 'application/json',
-                data: JSON.stringify(dados),
-                success: function (data) {
-                    // Lidar com o sucesso da atualização
-                    $('#modalAdicionar').modal('hide'); // Fechar o modal de edição
-                    location.reload(); // Recarregar a página para refletir as alterações
-                },
-                error: function (error) {
-                    // Lidar com erros de atualização
-                    console.error('Erro ao atualizar colaborador:', error);
-                }
-            });
-        });
-    }
-
     function carregarDetalhesDoColaborador(colaboradorId) {
-        // Faça uma solicitação AJAX para buscar os detalhes do colaborador com base no ID
         $.ajax({
             url: 'https://localhost:7107/api/colaboradores/' + colaboradorId,
             type: 'GET',
-            success: function (data) {
-                // Preencha os campos do formulário com os detalhes do colaborador
+            success: function (data) {                
                 $('#nome').val(data.nome);
                 $('#email').val(data.email);
                 $('#telefone').val(data.telefone);
-
-                // Preencha o campo com o nome do cargo
-                $('#cargo').append('<option value="' + data.cargo.id + '">' + data.cargo.nome + '</option>');
-                $('#cargo').val(data.cargo.id); // Defina o valor selecionado no combobox
+                
+                carregarCargos(data.cargo.id);
             },
-            error: function (error) {
-                // Lidar com o erro
+            error: function (error) {               
             }
         });
     }
+
+    $('#btnBuscar').click(function () {
+        var nome = $('input[name="searchString"]').val();
+
+        $.ajax({
+            url: 'https://localhost:7107/api/colaboradores/buscar?nome=' + nome,
+            type: 'GET',
+            success: function (data) {
+                atualizarTabela(data);
+            },
+            error: function (error) {
+                console.error('Erro ao buscar colaboradores:', error);
+            }
+        });
+    });
+
+    function atualizarTabela(colaboradores) {
+        var tbody = $('table tbody');
+        tbody.empty();
+
+        $.each(colaboradores, function (index, colaborador) {
+            var row = '<tr>' +
+                '<td>' + colaborador.nome + '</td>' +
+                '<td>' + colaborador.email + '</td>' +
+                '<td>' + colaborador.telefone + '</td>' +
+                '<td>' + colaborador.cargo.nome + '</td>' +
+                '<td><button type="button" class="btn btn-primary btn-editar" data-id="' + colaborador.id + '">Editar</button></td>' +
+                '</tr>';
+            tbody.append(row);
+        });
+    }
+
+    $('#modalAdicionar').on('hidden.bs.modal', function () {
+        ocultarErroEmail();
+        location.reload();
+        $('#btnCriarColaborador').text('Criar');
+        $('#modalAdicionarLabel').text('Adicionar Novo Colaborador');
+    });
 });

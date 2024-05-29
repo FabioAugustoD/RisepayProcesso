@@ -4,7 +4,6 @@ using Risepay.Infra.Context;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Adiciona a política CORS
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAllOrigins",
@@ -25,7 +24,6 @@ builder.Services.AddDbContext<AppDbContext>((serviceProvider, options) =>
 ServiceConfiguration.Register(builder.Services);
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -42,7 +40,6 @@ app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
-// Aplica a política CORS antes de MapControllers
 app.UseCors("AllowAllOrigins");
 
 app.MapControllers();
